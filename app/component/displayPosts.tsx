@@ -84,7 +84,7 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
               </div>
             </div>
             <div className="flex justify-between">
-              <h1 className="text-xs p-2 text-zinc-600">{data.time.slice(4, 15)}</h1>
+              <h1 className="text-xs p-2 text-zinc-00">{data.time.slice(4, 15)}</h1>
               <Delete id={data.id}></Delete>
             </div>
           </div>
