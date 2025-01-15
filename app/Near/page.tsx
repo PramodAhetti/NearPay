@@ -13,7 +13,7 @@ import addUser from "../actions/addUser";
 import DisplayPosts from "../component/displayPosts";
 
 export default function HomeAndNearLayout() {
-  const user = useSession();
+  const { data: session, status } = useSession();
   const router = useRouter();
   const postRef = useRef<HTMLInputElement>(null);
   const [posts, setPosts] = useState<any[]>([]);
@@ -25,69 +25,69 @@ export default function HomeAndNearLayout() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const content = postRef.current?.value;
+    const content = postRef.current?.value?.trim();
+    if (!content) {
+      alert.error("UPI ID cannot be empty");
+      return;
+    }
 
     try {
       const formData = new FormData();
-      if (content) {
-        formData.append("upiId", content);
-      }
+      formData.append("upiId", content);
       const location = await getCurLocation();
-      formData.append("location", JSON.stringify(location));
-
-      try {
-        const response = await submitPost(formData);
-        if (postRef.current) {
-          postRef.current.value = "";
-        }
-        alert.success("Post submitted successfully");
-        setReload(!reload);
-      } catch (error) {
-        console.error("Error submitting post:", error);
-        alert.error("Error submitting post");
+      if (location) {
+        formData.append("location", JSON.stringify(location));
       }
+
+      const response = await submitPost(formData);
+      if(postRef.current){
+      postRef.current.value = "";
+      }
+      alert.success("Post submitted successfully");
+      setReload(!reload);
     } catch (error) {
-      console.error("Error compressing image:", error);
-      alert.error("Error compressing image");
+      console.error("Error submitting post:", error);
+      alert.error("Error submitting post");
     }
   };
 
   useEffect(() => {
     const fetchUserAndPosts = async () => {
-      if (user.status === "authenticated") {
+      if (status === "authenticated") {
         try {
-          if (user.data?.user?.image) {
-            setAvatar(user.data.user.image);
-          }
-          if (user.data.user?.email) {
-            console.log(await addUser(user.data.user.email));
-          }
+          if (session?.user?.image) setAvatar(session.user.image);
+          if (session?.user?.email) await addUser(session.user.email);
         } catch (error) {
-          alert.error("Try again");
           console.error("Error fetching user info:", error);
+          alert.error("Error fetching user info");
         }
       } else {
         router.push("/");
       }
+
       try {
         const location = await getCurLocation();
-        setUserLocation({latitude:location.coords.latitude,longitude:location.coords.longitude});
-        const near_posts = await getPosts(location);
-        console.log(near_posts);
-        if (!near_posts.length) {
-          console.log("No posts found near you. Try again later");
-          alert.success("No posts found near you. Try again later.");
-        } else {
-          setPosts(near_posts);
+        if (location) {
+          setUserLocation({
+            latitude: location.coords.latitude,
+            longitude: location.coords.longitude,
+          });
+
+          const nearPosts = await getPosts(location);
+          if (nearPosts.length === 0) {
+            alert.success("No posts found near you. Try again later.");
+          } else {
+            setPosts(nearPosts);
+          }
         }
       } catch (error) {
-        alert.error("Error fetching posts");
         console.error("Error fetching posts:", error);
+        alert.error("Error fetching posts");
       }
     };
 
     fetchUserAndPosts();
-  }, [user.status, reload, router]);
+  }, [status, reload, router, session]);
 
   return (
     <div className="h-screen w-full grid grid-cols-12 bg-zinc-800 grid-rows-12">
@@ -106,16 +106,28 @@ export default function HomeAndNearLayout() {
         />
       </header>
       <form onSubmit={handleSubmit} className="bg-slate-600 m-1 flex flex-row rounded-lg row-start-12 row-end-13 col-start-1 col-end-13 w-full">
-        <input type="text" ref={postRef} placeholder="UPI ID" className="text-black w-full p-2" />
-        <button type="submit" className="w-1/6 bg-white text-black flex flex-col justify-center items-center"><SendHorizontal /></button>
+        <input
+          type="text"
+          ref={postRef}
+          placeholder="UPI ID"
+          className="text-black w-full p-2"
+        />
+        <button type="submit" className="w-1/6 bg-white text-black flex flex-col justify-center items-center">
+          <SendHorizontal />
+        </button>
       </form>
       <div className="col-start-1 overflow-x-auto text-wrap col-end-13 row-start-2 row-end-12 flex flex-col m-3 text-black rounded-md">
-        {user.data?.user?.email && userLocation && (
+        {session?.user?.email && userLocation ? (
           <DisplayPosts
             posts={posts}
-            user_email={user.data.user.email}
-            user_location={{ latitude: userLocation.latitude, longitude: userLocation.longitude }}
+            user_email={session.user.email}
+            user_location={{
+              latitude: userLocation.latitude,
+              longitude: userLocation.longitude,
+            }}
           />
+        ) : (
+          <p className="text-white text-center">Loading posts...</p>
         )}
       </div>
     </div>

@@ -5,6 +5,7 @@ import Delete from "../component/delete";
 // Function to extract details from UPI URL
 const extractUPIDetails = (upiUrl: string) => {
   const url = new URL(upiUrl);
+  
   const params = url.searchParams;
   const upiId = params.get("pa") || "";
   const [username, domain] = upiId.split('@');
@@ -73,9 +74,9 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
           <div key={data.id} className={`text-xs w-fit ${bgColor} self-end flex flex-col p-2 m-2 rounded-md`}>
             <div className="flex flex-col justify-between p-1">
               <div className="flex flex-col justify-start pt-2">
-                <span className="bg-lime-200 bg-gradient-to-r from-purple-500 to-blue-400 font-bold w-fit rounded-lg border border-black m-1">
+                <span className="bg-lime-200 bg-gradient-to-r from-purple-500 to-blue-500 font-bold w-fit rounded-lg border border-black m-1">
 
-                  <h1 className="text-base p-1">{username}@{domain} </h1>
+                  <h1 className="text-base p-2 text-white">{username}@{domain} </h1>
                 </span>
                 <a className="text-sm m-1 bg-white border border-black text-center p-1" href={data.upiId}>
                   Pay Now
@@ -92,7 +93,7 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
             <div className="flex flex-col justify-between p-1">
               <div className="flex flex-col justify-start pt-2">
                 <span className="bg-lime-200 bg-gradient-to-r from-purple-500 to-blue-400 p-1 font-bold w-fit rounded-lg border border-black m-1">
-                  <h1 className="text-lg p-1">{username}</h1>
+                  <h1 className="text-lg p-2 text-white">{username}</h1>
                 </span>
                 <a className="text-sm m-1 bg-white border border-black text-center p-1" href={data.upiId}>
                   Pay Now
