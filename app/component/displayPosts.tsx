@@ -74,17 +74,17 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
           <div key={data.id} className={`text-xs w-fit ${bgColor} self-end flex flex-col p-2 m-2 rounded-md`}>
             <div className="flex flex-col justify-between p-1">
               <div className="flex flex-col justify-start pt-2">
-                <span className="bg-lime-200 bg-gradient-to-r from-purple-500 to-blue-500 font-bold w-fit rounded-lg border border-black m-1">
+                <span className="bg-lime-200 bg-gradient-to-r from-purple-400 to-blue-400 font-bold w-fit rounded-lg border border-black m-1">
 
-                  <h1 className="text-base p-2 text-white">{username}@{domain} </h1>
+                  <h1 className="text-base p-2 text-black">{username}@{domain} </h1>
                 </span>
-                <a className="text-sm m-1 bg-white border border-black text-center p-1" href={data.upiId}>
+                <a className="text-sm m-1 bg-white rounded-lg border border-black text-center p-1" href={data.upiId}>
                   Pay Now
                 </a>
               </div>
             </div>
             <div className="flex justify-between">
-              <h1 className="text-xs p-2 text-zinc-500">{data.time.slice(4, 15)}</h1>
+              <h1 className="text-xs p-2 text-zinc-600">{data.time.slice(4, 15)}</h1>
               <Delete id={data.id}></Delete>
             </div>
           </div>
@@ -93,15 +93,15 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
             <div className="flex flex-col justify-between p-1">
               <div className="flex flex-col justify-start pt-2">
                 <span className="bg-lime-200 bg-gradient-to-r from-purple-500 to-blue-400 p-1 font-bold w-fit rounded-lg border border-black m-1">
-                  <h1 className="text-lg p-2 text-white">{username}</h1>
+                  <h1 className="text-lg p-2 text-black">{username}</h1>
                 </span>
-                <a className="text-sm m-1 bg-white border border-black text-center p-1" href={data.upiId}>
+                <a className="text-sm m-1 bg-white rounded-lg border border-black text-center p-1" href={data.upiId}>
                   Pay Now
                 </a>
               </div>
             </div>
             <div className="flex justify-between">
-              <h1 className="text-xs p-2 text-zinc-500">{data.time.slice(4, 15)}</h1>
+              <h1 className="text-xs p-2 text-zinc-600">{data.time.slice(4, 15)}</h1>
             </div>
           </div>
         );

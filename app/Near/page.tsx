@@ -116,7 +116,7 @@ export default function HomeAndNearLayout() {
           <SendHorizontal />
         </button>
       </form>
-      <div className="col-start-1 overflow-x-auto text-wrap col-end-13 row-start-2 row-end-12 flex flex-col m-3 text-black rounded-md">
+      <div className="col-start-1 low-x-auto text-wrap col-end-13 row-start-2 row-end-12 flex flex-col m-3 text-black rounded-md">
         {session?.user?.email && userLocation ? (
           <DisplayPosts
             posts={posts}
@@ -127,7 +127,9 @@ export default function HomeAndNearLayout() {
             }}
           />
         ) : (
-          <p className="text-white text-center">Loading posts...</p>
+          <div className="flex justify-center items-center h-full">
+          <div className="animate-spin rounded-full h-12 w-12 border-t-5 border-b-2 border-white"></div>
+        </div>
         )}
       </div>
     </div>
