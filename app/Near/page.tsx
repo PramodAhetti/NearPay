@@ -204,34 +204,17 @@ export default function HomeAndNearLayout() {
   );
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    const content = postRef.current?.value;
-    const file = fileInputRef.current?.files?.[0];
+   
+    const content= postRef.current?.value;
 
-    if (!content || !file) {
-      alert.error("Please provide content and an image.");
-      return;
-    }
 
     try {
-      // Compress the image
-      const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
-        useWebWorker: true,
-      };
-      const compressedFile = await imageCompression(file, options);
-
-      const reader = new FileReader();
-      reader.readAsDataURL(compressedFile);
-      reader.onloadend = async () => {
-        const base64data = reader.result?.toString().split(",")[1];
-
         const formData = new FormData();
-        formData.append("message", content);
+        if(content){
+        formData.append("upiId", content);
+        }
         const location = await getCurLocation();
         formData.append("location", JSON.stringify(location));
-        formData.append("file", base64data || "");
 
         try {
           const response = await submitPost(formData);
@@ -244,7 +227,6 @@ export default function HomeAndNearLayout() {
           console.error("Error submitting post:", error);
           alert.error("Error submitting post");
         }
-      };
     } catch (error) {
       console.error("Error compressing image:", error);
       alert.error("Error compressing image");
@@ -306,9 +288,7 @@ export default function HomeAndNearLayout() {
         />
       </header>
       <form onSubmit={handleSubmit} className="bg-slate-600 m-1 flex flex-row rounded-lg row-start-12 row-end-13 col-start-1 col-end-13 w-full">
-        <input type="text" ref={postRef} placeholder="Message" className="text-black w-full p-2" />
-        <input type="file" id="file-input" ref={fileInputRef} className="hidden" />
-        <label htmlFor="file-input" className="w-1/6 bg-white text-black flex flex-col justify-center items-center"><LinkIcon></LinkIcon></label>
+        <input type="text" ref={postRef} placeholder="UPI ID" className="text-black w-full p-2" />
         <button type="submit" className="w-1/6 bg-white text-black flex flex-col justify-center items-center"><SendHorizontal /></button>
       </form>
       <div className="col-start-1 overflow-x-auto text-wrap col-end-13 row-start-2 row-end-12 flex flex-col m-3 text-black rounded-md">

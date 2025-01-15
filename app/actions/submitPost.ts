@@ -29,24 +29,17 @@ export async function submitPost(formdata: FormData) {
     const location = JSON.parse(coords);
 
     // Access the image file from FormData
-    const file = formdata.get("file") as string;
-
-    if (!file) {
-      throw new Error("Image file is required");
-    }
-
-    // Convert the image file to a buffer
+    const upiId= formdata.get("upiId") as string;
 
     // Save post data including the image buffer
     const post = await prisma.post.create({
       data: {
-        content: formdata.get("message") as string,
+        upiId:upiId,
         latitude: location.coords.latitude,
         longitude: location.coords.longitude,
         author: {
           connect: { id: author.id },
         },
-        image:file,
         time: Date(), // Use current date and time
       },
     });

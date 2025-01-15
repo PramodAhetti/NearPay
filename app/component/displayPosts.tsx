@@ -4,7 +4,7 @@ import Delete from "../component/delete";
 
 type Post = {
   id: string;
-  content: string;
+  upiId: string;
   author: {
     email: string;
   };
@@ -30,18 +30,12 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email }) => {
           >
 
             <div className="flex flex-col justify-between p-1">
-              {data.image && (
-                <img
-                  src={`data:image/jpeg;base64,${data.image}`}
-                  alt="Post image"
-                  className="flex flex-row justify-center items-center w-22 h-22 object-cover rounded-lg"
-                />
-              )}
+
             <div className="flex flex-col justify-start pt-2">
             <span className="bg-lime-200 p-1 font-bold w-fit rounded-lg border border-black m-1">
               {data.author.email.split("@")[0]}
             </span>
-              <p className="text-sm m-1">{data.content}</p>
+              <a className="text-sm m-1 bg-white border border-black text-center p-1" href={data.upiId}>Pay Now</a>
             </div>
  </div>
             <div className="flex justify-between">
@@ -58,17 +52,11 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email }) => {
           >
 
             <div className="flex flex-col justify-between p-1">
-              {data.image && (
-                <img
-                  src={`data:image/jpeg;base64,${data.image}`}
-                  alt="Post image"
-                  className="flex flex-row justify-center items-center w-22 h-22 object-cover rounded-lg"
-                />
-              )}
+
               <div className="flex flex-col justify-start pt-2">
             <span className="bg-lime-200 p-1 font-bold w-fit rounded-lg border border-black m-1"> {data.author.email.split("@")[0]}
             </span>
-              <p className="text-sm m-1"> { data.content}</p>
+              <a className="text-sm m-1 bg-white" href={data.upiId}> Pay</a>
               </div>
             </div>
             <div className="flex justify-between">

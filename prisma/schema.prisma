@@ -8,13 +8,12 @@ model User {
 
 model Post {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId // Use ObjectId for MongoDB
-  content   String?
+  upiId     String
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String   // Change to String to match User id type
   latitude  Float
   longitude Float
   time      String?
-  image     String?
 }
 
 generator client {
