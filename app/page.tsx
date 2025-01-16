@@ -23,11 +23,7 @@ const LandingPage =async () => {
 </div>
        <AlignJustify size={30}></AlignJustify>
        </nav>
-      {/* <div className='flex justify-center items-center row-start-2 row-end-4 col-start-5 col-end-9'>
-         <MapPin size={150} ></MapPin>
-      </div> */}
-      {/* <Image alt='fractal' src='/qr.gif' className='row-start-3 rounded-full row-end-6 col-start-4 col-end-10' width={600} height={600}></Image> */}
-      <p className='text-white row-start-3 row-end-6 text-5xl  font-normal text-left col-start-1 col-end-13 m-5'>The Best Payment Experience.</p>
+            <p className='text-white row-start-3 row-end-6 text-5xl  font-normal text-left col-start-1 col-end-13 m-5'>The Best Payment Experience.</p>
       <div className='mb-10 text-center text-sm row-start-9 col-start-2 text-gray-400 col-end-12 flex flex-row justify-evenly items-center'>
         <p className='text-left text-sm'>
         <span className='font-bold text-white'>NearPay</span> connects users to local shops for quick, secure QR code payments.</p>

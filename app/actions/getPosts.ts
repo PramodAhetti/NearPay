@@ -7,7 +7,7 @@ type Location = {
     };
   };
 
-const radius=0.001;
+const radius=0.0005;
 export async function getPosts(coords:Location){
     const prisma=new PrismaClient();
     try{

@@ -61,8 +61,7 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
         let distance = calculateDistance(user_location, { latitude: data.latitude, longitude: data.longitude });
         let bgColor;
         distance=distance*1000;
-        console.log(distance)
-        if (distance < 1) {
+        if (distance < 3) {
           bgColor = 'bg-green-400';
         } else if (distance < 5) {
           bgColor = 'bg-yellow-400';
