@@ -16,17 +16,9 @@ const extractUPIDetails = (upiUrl: string) => {
 
 // Function to calculate distance between two locations
 const calculateDistance = (loc1 : Location, loc2:Location) => {
-  const R = 6371; // Radius of the Earth in km
-  const dLat = (loc2.latitude - loc1.latitude) * (Math.PI / 180);
-  const dLon = (loc2.longitude - loc1.longitude) * (Math.PI / 180);
-  const a =
-    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
-    Math.cos(loc1.latitude * (Math.PI / 180)) *
-      Math.cos(loc2.latitude * (Math.PI / 180)) *
-      Math.sin(dLon / 2) *
-      Math.sin(dLon / 2);
-  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
-  const distance = R * c; // Distance in km
+  const dLat = (loc2.latitude - loc1.latitude) 
+  const dLon = (loc2.longitude - loc1.longitude)
+  const distance = (dLat*dLat)+(dLon*dLon) ; // Distance in km
   return distance;
 };
 
@@ -60,10 +52,12 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
         const { username, domain, name, purpose } = extractUPIDetails(data.upiId);
         let distance = calculateDistance(user_location, { latitude: data.latitude, longitude: data.longitude });
         let bgColor;
-        distance=distance*1000;
-        if (distance < 3) {
+        distance=distance*10000000000;
+        distance=distance%10;
+        console.log("distance",distance)
+        if (distance < 3.5) {
           bgColor = 'bg-green-400';
-        } else if (distance < 5) {
+        } else if (distance < 7 ) {
           bgColor = 'bg-yellow-400';
         } else {
           bgColor = 'bg-red-400';
