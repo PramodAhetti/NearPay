@@ -86,10 +86,10 @@ export default function HomeAndNearLayout() {
           });
 
           const nearPosts = await getPosts(location);
-          if (nearPosts.length === 0) {
-            alert.success("No posts found near you. Try again later.");
-          } else {
+          if (nearPosts) {
             setPosts(nearPosts);
+          }else{
+            alert.error("No posts found");
           }
         }
       } catch (error) {
@@ -141,7 +141,7 @@ export default function HomeAndNearLayout() {
           />
         ) : (
           <div className="flex justify-center items-center h-full">
-            <div className="animate-spin rounded-full h-12 w-12 border-t-5 border-b-2 border-white"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-t-6 border-b-2 border-white"></div>
           </div>
         )}
       </div>
