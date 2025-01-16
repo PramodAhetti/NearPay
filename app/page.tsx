@@ -31,7 +31,7 @@ const LandingPage =async () => {
       {button}
 
       <div className="row-start-10 p-2 items-center flex flex-col mt-4 row-end-13 col-start-1 col-end-13">
-      <Image width={300} alt='qr image' height={300} src='/upi.gif' className='rounded-md border border-white border-solid transform rotate-12 m-2'></Image>
+      <Image width={250} alt='qr image' height={300} src='/upi.gif' className='rounded-md border border-white border-solid transform rotate-12 m-2'></Image>
       
       {/* About Section */}
       <div className="about-section p-6 m-8 text-left text-white bg-gradient-to-r from-purple-500 to-blue-400 rounded-lg shadow-lg">

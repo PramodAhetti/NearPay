@@ -7,7 +7,6 @@ const inter = Inter({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "NearPay",
   description: "Saved QR codes for quick payments",
-  icons: ['./bg.png'],
 };
 
 export default function RootLayout({
@@ -17,6 +16,20 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="text-black">
+      <head>
+      <link
+  rel="icon"
+  href="/icon?<generated>"
+  type="image/<generated>"
+  sizes="<generated>"
+/>
+<link
+  rel="apple-touch-icon"
+  href="/apple-icon?<generated>"
+  type="image/<generated>"
+  sizes="<generated>"
+/>
+      </head>
       <SessionWrapper>
       <body className={inter.className}>{children}</body>
       </SessionWrapper>
