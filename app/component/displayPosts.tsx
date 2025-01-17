@@ -112,7 +112,8 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
                   <h1 className="text-base p-2 text-black">{user_email.split('@')[0]}</h1>
                 </span>
                 <div id={`qr-code-${data.id}`} className="m-1 rounded-lg">
-                  <QRCode value={data.upiId} />
+                  <QRCode size={150} value={data.upiId} />
+
                 </div>
                 <a className="text-sm m-1 bg-white rounded-lg border border-black text-center p-1" href={data.upiId}>
                   {actionLabel}
@@ -137,7 +138,7 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
                   <h1 className="text-base p-2 text-black">{user_email.split('@')[0]}</h1>
                 </span>
                 <div id={`qr-code-${data.id}`} className="m-1 rounded-lg">
-                  <QRCode value={data.upiId} />
+                  <QRCode size={150} value={data.upiId} />
                 </div>
                 <a className="text-sm m-1 bg-white rounded-lg border border-black text-center p-1" href={data.upiId}>
                   {actionLabel}
