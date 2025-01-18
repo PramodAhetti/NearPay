@@ -78,7 +78,7 @@ export default function AddPostPage() {
           }}
         />
       </header>
-      <form onSubmit={handleSubmit} className="bg-gradient-to-r from-purple-500 to-blue-400 m-1 flex flex-col justify-center rounded-lg row-start-6 row-end-9 col-start-2 col-end-12 w-full p-4">
+      <form onSubmit={handleSubmit} className="bg-gradient-to-r from-purple-500 to-blue-400 m-1 flex flex-col justify-center rounded-lg row-start-5 row-end-10 col-start-2 col-end-12 w-full p-4">
         <div className="text-black w-full p-2 mb-2 text-center rounded-lg">Register Shop</div>
         <input
           type="text"
