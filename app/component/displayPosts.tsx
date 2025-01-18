@@ -51,6 +51,7 @@ type Post = {
   longitude: number;
   time: string;
   image?: string;
+  shopName?: string;
 };
 
 type Props = {
@@ -109,17 +110,15 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
               <div className="flex flex-col justify-start pt-2">
                 <span className="bg-lime-200 bg-gradient-to-r from-purple-400 to-blue-400 font-bold w-fit rounded-lg border border-black m-1">
 
-                  <h1 className="text-base p-2 text-black">{user_email.split('@')[0]}</h1>
+                  <h1 className="text-base p-2 text-black">{data.shopName}</h1>
                 </span>
                 <div id={`qr-code-${data.id}`} className="m-1 rounded-lg">
                   <QRCode size={150} value={data.upiId} />
 
                 </div>
-                <a className="text-sm m-1 bg-white rounded-lg border border-black text-center p-1" href={data.upiId}>
-                  {actionLabel}
-                </a>
+
                 <button 
-                  className="text-sm m-1 bg-blue-500 rounded-lg text-white p-1"
+                  className="text-sm m-1 border border-black bg-blue-500 rounded-lg text-white p-1"
                   onClick={() => downloadPost(`post-${data.id}`)}>
                   Download 
                 </button>
@@ -135,16 +134,14 @@ const DisplayPosts: React.FC<Props> = ({ posts, user_email, user_location }) => 
             <div className="flex flex-col justify-between p-1">
               <div className="flex flex-col justify-start pt-2">
                 <span className="bg-lime-200 bg-gradient-to-r from-purple-500 to-blue-400 p-1 font-bold w-fit rounded-lg border border-black m-1">
-                  <h1 className="text-base p-2 text-black">{user_email.split('@')[0]}</h1>
+                  <h1 className="text-base p-2 text-black">{data.shopName}</h1>
                 </span>
                 <div id={`qr-code-${data.id}`} className="m-1 rounded-lg">
                   <QRCode size={150} value={data.upiId} />
                 </div>
-                <a className="text-sm m-1 bg-white rounded-lg border border-black text-center p-1" href={data.upiId}>
-                  {actionLabel}
-                </a>
+
                 <button 
-                  className="text-sm m-1 bg-blue-500 rounded-lg text-white p-1"
+                  className="text-sm m-1 border border-black bg-blue-500 rounded-lg text-white p-1"
                   onClick={() => downloadPost(`post-${data.id}`)}>
                   Download 
                 </button>

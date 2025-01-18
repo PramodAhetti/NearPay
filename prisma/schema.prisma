@@ -9,6 +9,7 @@ model User {
 model Post {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId // Use ObjectId for MongoDB
   upiId     String
+  shopName  String
   author    User     @relation(fields: [authorId], references: [id])
   authorId  String   // Change to String to match User id type
   latitude  Float

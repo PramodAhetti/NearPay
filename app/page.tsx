@@ -12,7 +12,12 @@ const LandingPage =async () => {
   let button=<GoogleLog></GoogleLog>;
 
   if(user){
-    button=<Link href={'/Near'} className="text-center flex justify-center items-center flex-col text-sm  w-full row-start-7 row-end-8 md-2 col-start-2 col-end-8 text-white rounded-md font-semibold border bg-gradient-to-r from-purple-500 to-blue-400" >Get Started</Link>  }
+    button=
+    <div className='flex justify-between row-start-7 row-end-8  col-start-2 col-end-12'>
+    <Link href={'/Near'} className="text-center flex m-1 justify-center items-center flex-col text-sm  w-full text-white rounded-md font-semibold border bg-gradient-to-r from-purple-500 to-blue-400" >QRCode</Link>
+    <Link href={'/AddPost'} className="text-center flex m-1 justify-center items-center flex-col text-sm  w-full text-white rounded-md font-semibold border bg-gradient-to-r from-purple-500 to-blue-400" >Register</Link>  
+    </div>
+  }
   return (
     
      <div className='w-full h-screen grid grid-rows-12 grid-cols-12'>  
@@ -31,7 +36,7 @@ const LandingPage =async () => {
       {button}
 
       <div className="row-start-10 p-2 items-center flex flex-col mt-4 row-end-13 col-start-1 col-end-13">
-      <Image width={2500} alt='qr image' height={300} src='/upi.gif' className='rounded-md border border-white border-solid transform rotate-12 m-2'></Image>
+      <Image width={280} alt='qr image' height={300} src='/upi.gif' className='rounded-md border border-white border-solid transform rotate-12 m-2'></Image>
       
       {/* About Section */}
       <div className="about-section p-6 m-8 text-left text-white bg-gradient-to-r from-purple-500 to-blue-400 rounded-lg shadow-lg">
