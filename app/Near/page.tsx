@@ -211,7 +211,7 @@ export default function HomeAndNearLayout() {
   }, [status, reload, router, session]);
 
   return (
-    <div className="h-screen w-full grid grid-cols-12 bg-zinc-800 grid-rows-12">
+    <div className="h-screen w-full grid grid-cols-12 bg-zinc-800 grid-rows-13">
       <header className="row-start-1 row-end-2 col-start-1 col-end-13 m-4 flex justify-between items-center space-x-2">
         <Link href="/">
           <Home className="w-8 h-8 text-white" />
