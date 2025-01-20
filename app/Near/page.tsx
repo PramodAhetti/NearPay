@@ -160,6 +160,8 @@ import getCurLocation from "../actions/getLocation";
 import addUser from "../actions/addUser";
 import DisplayPosts from "../component/displayPosts";
 import alert from "../component/alert";
+
+
 export default function HomeAndNearLayout() {
   const { data: session, status } = useSession();
   const router = useRouter();

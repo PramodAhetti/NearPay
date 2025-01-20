@@ -1,6 +1,7 @@
 "use server"
 import { PrismaClient } from "@prisma/client";
-import { error } from "console";
+
+
 export default async function addUser(email:string){
     const prisma=new PrismaClient();
    try{

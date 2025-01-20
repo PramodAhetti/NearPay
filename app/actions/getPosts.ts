@@ -1,5 +1,10 @@
 "use server"
+import { authOptions } from "@/lib/authoptions";
 import { PrismaClient } from "@prisma/client";
+import { getServerSession } from "next-auth";
+import { getServerSideProps } from "next/dist/build/templates/pages";
+
+
 type Location = {
     coords: {
       latitude: number;
@@ -7,11 +12,15 @@ type Location = {
     };
   };
 
+
 const radius=0.0005;
 export async function getPosts(coords:Location){
-    const prisma=new PrismaClient();
-    try{
-        console.log(coords);
+  const prisma=new PrismaClient();
+  try{
+    const user=await getServerSession(authOptions);
+    if(!user){
+      throw new Error("unauthorized");
+    }
        const posts = await prisma.post.findMany({
             where:{
                 latitude:{gte:coords.coords.latitude-radius,lte:coords.coords.latitude+radius},
@@ -21,12 +30,11 @@ export async function getPosts(coords:Location){
                 author: true, // Include author details
             },
         });
-        console.log(posts);
-        
+
         return posts;
-  }catch(e){
-    console.log(e);
-    throw new Error("Failed to fetch posts");
+  }catch(error){
+      const err=error as Error;
+      throw new Error(err.message);
   } finally {
     await prisma.$disconnect();
   }

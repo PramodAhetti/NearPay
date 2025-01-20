@@ -60,8 +60,10 @@ import { PrismaClient } from "@prisma/client";
 export async function submitPost(formdata: FormData) {
   const prisma = new PrismaClient();
   try {
-    console.log("formdata:", formdata);
     const session = await getServerSession(authOptions);
+    if(!session){
+       throw new Error("Unauthorized");
+    }
     let author;
 
     if (session?.user?.email) {
