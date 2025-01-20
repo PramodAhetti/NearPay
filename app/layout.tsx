@@ -3,6 +3,10 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import SessionWrapper from "./component/sessionWrapper";
 const inter = Inter({ subsets: ["latin"] });
+import { Toaster } from "sonner";
+
+
+
 
 export const metadata: Metadata = {
   title: "NearPay",
@@ -31,6 +35,7 @@ export default function RootLayout({
 />
       </head>
       <SessionWrapper>
+        <Toaster position="top-right"/>
       <body className={inter.className}>{children}</body>
       </SessionWrapper>
     </html>

@@ -3,6 +3,7 @@
 model User {
   id    String @id @default(auto()) @map("_id") @db.ObjectId // Use ObjectId for MongoDB
   email String  @unique
+  owner Boolean @default(false)
   posts Post[]
 }
 
