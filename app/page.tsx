@@ -38,7 +38,7 @@ const LandingPage = async () => {
       {button}
       {/* Welcome Message */}
       {user?.user?.name && (
-        <p className="text-white row-start-2 row-end-3 text-xl font-bold text-right col-start-1 col-end-13 md-5 mt-5">
+        <p className="text-white row-start-8 row-end-8 text-xl text-left col-start-2 col-end-12 md-3 mt-3">
           Welcome, {user.user.name}!
         </p>
       )}
