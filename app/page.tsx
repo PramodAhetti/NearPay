@@ -29,7 +29,7 @@ const LandingPage = async () => {
       <p className="text-white row-start-3 row-end-6 text-5xl font-normal text-left col-start-1 col-end-13 m-5">
         The Best Payment Experience.
       </p>
-      <div className="mb-10 text-center text-sm row-start-9 col-start-2 text-gray-400 col-end-12 flex flex-row justify-evenly items-center">
+      <div className="mb-10 text-center text-sm row-start-10 col-start-2 text-gray-400 col-end-12 flex flex-row justify-evenly items-center">
         <p className="text-left text-sm">
           <span className="font-bold text-white">NearPay</span> connects users to local shops for quick, secure QR code
           payments.
@@ -38,11 +38,11 @@ const LandingPage = async () => {
       {button}
       {/* Welcome Message */}
       {user?.user?.name && (
-        <p className="text-white row-start-8 row-end-8 text-xl text-left col-start-2 col-end-12 md-3 mt-3">
+        <p className="text-white row-start-8 row-end-10 flex flex-col justify-center text-xl text-left col-start-2 col-end-12 md-3">
           Welcome, {user.user.name}!
         </p>
       )}
-      <div className="row-start-10 p-2 items-center flex flex-col mt-4 row-end-13 col-start-1 col-end-13">
+      <div className="row-start-11 p-2 items-center flex flex-col mt-4 row-end-13 col-start-1 col-end-13">
         <Image
           width={280}
           alt="qr image"

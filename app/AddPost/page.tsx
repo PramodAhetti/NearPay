@@ -57,8 +57,9 @@ export default function AddPostPage() {
         shopNameRef.current.value = "";
       }
       alert.success("Post submitted successfully");
-    } catch (error) {
-      alert.error("Error submitting post");
+    } catch (err) {
+      const error=err as Error;
+      alert.error(error.message);
     }
   };
 
@@ -79,7 +80,7 @@ export default function AddPostPage() {
         />
       </header>
       <form onSubmit={handleSubmit} className="bg-gradient-to-r from-purple-500 to-blue-400 m-1 flex flex-col justify-center rounded-lg row-start-5 row-end-10 col-start-2 col-end-12 w-full p-4">
-        <div className="text-black w-full p-2 mb-2 text-center rounded-lg">Register Shop</div>
+        <div className="text-black w-full p-2 mb-2 text-center text-xl rounded-lg">Register Shop</div>
         <input
           type="text"
           ref={shopNameRef}
