@@ -69,7 +69,7 @@ export default function HomeAndNearLayout() {
 
   return (
     <div className="h-screen w-full grid grid-cols-12 bg-zinc-800 grid-rows-13">
-      <header className="row-start-1 row-end-1 col-start-1 col-end-13 h-16 m-4 flex justify-between items-center">
+      <header className="row-start-1 row-end-1 col-start-1 col-end-13 h-12 m-4 flex justify-between items-center">
         <Link href="/">
           <Home className="w-8 h-8 text-white" />
         </Link>
