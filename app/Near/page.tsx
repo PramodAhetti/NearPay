@@ -60,17 +60,16 @@ export default function HomeAndNearLayout() {
   }, [status, reload, router, session]);
 
   const SkeletonLoader = () => (
-    <div className="animate-pulse bg-gray-300 p-4 rounded-md m-5">
+    <div className="animate-pulse bg-gray-300 p-4 rounded-md m-3">
       <div className="h-4 bg-gray-400 rounded w-1/2 mb-2"></div>
       <div className="h-4 bg-gray-400 rounded w-3/4 mb-2"></div>
       <div className="h-4 bg-gray-400 rounded w-full"></div>
     </div>
   );
 
-
   return (
     <div className="h-screen w-full grid grid-cols-12 bg-zinc-800 grid-rows-13">
-      <header className="row-start-1 row-end-2 col-start-1 col-end-13 m-4 flex justify-between items-center space-x-2">
+      <header className="row-start-1 row-end-1 col-start-1 col-end-13 h-16 m-4 flex justify-between items-center">
         <Link href="/">
           <Home className="w-8 h-8 text-white" />
         </Link>
@@ -85,7 +84,7 @@ export default function HomeAndNearLayout() {
         />
       </header>
 
-      <div className="col-start-1 overflow-x-auto text-wrap col-end-13 row-start-2 row-end-12 flex flex-col text-black rounded-md">
+      <div className="col-start-1 col-end-13 row-start-2 row-end-13 overflow-y-auto flex flex-col text-black rounded-md">
         {session?.user?.email && userLocation ? (
           <DisplayPosts
             posts={posts}
@@ -96,7 +95,7 @@ export default function HomeAndNearLayout() {
             }}
           />
         ) : (
-          <div className="flex flex-col space-y-4">
+          <div className="flex flex-col">
             {Array(8)
               .fill(0)
               .map((_, index) => (
